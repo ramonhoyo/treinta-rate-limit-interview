@@ -31,11 +31,8 @@ class RateLimiterMiddleware {
       }
       this.rateLimitStore.set(ip, clientData);
 
-
       res.setHeader('X-RateLimit-Remaining', maxRequests - clientData.requests);
-
       res.setHeader('X-RateLimit-Limit', maxRequests);
-      res.setHeader('X-RateLimit-Remaining', maxRequests - clientData.requests);
       res.setHeader('X-RateLimit-Reset', clientData.firstRequest + timeWindow - Date.now());
 
       next();
